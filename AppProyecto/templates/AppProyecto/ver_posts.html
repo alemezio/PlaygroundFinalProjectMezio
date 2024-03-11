@@ -1,0 +1,51 @@
+{% extends 'AppProyecto/padre.html' %}
+
+{% load static %}
+
+{% block bloque_header %}
+    <header class="bg-dark py-4">
+        <div class="container px-3 px-lg-4 my-4">
+            <div class="text-center text-white">
+                <h1 class="display-4 fw-bolder">
+                    Posteos
+                </h1>
+                <p class="lead fw-normal text-white-50 mb-0">
+                    Listado de publicaciones
+                </p>
+                <a class="btn btn-primary btn-xl" href="{% url 'Nuevo_post' %}">Crear nuevo posteo</a>
+            </div>
+        </div>
+    </header>
+{% endblock bloque_header %}
+
+{% block contenidoQueCambia %}
+<section class="bg-light">
+    <div class="container px-4 px-lg-5">
+        {% if posts %}
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    {% for post in posts %}
+                        <!-- Post preview-->
+                        <div class="post-preview">
+                            <a href={% url 'Ver_post' post.id %}>
+                                <h2 class="post-title">{{ post.titulo }}</h2>
+                                <h3 class="post-subtitle">{{ post.subtitulo }}</h3>
+                            </a>
+                            <p class="post-meta">
+                                Posteado por {{ post.autor }} el {{ post.fecha_creado }}.
+                            </p>
+                        </div>
+                        <!-- Divider-->
+                        <hr class="my-4"/>
+                    {% endfor %}
+                </div>
+            </div>
+        {% else %}
+            <div class="p-3 p-lg-4 lead fst-italic">
+                <p>No hay publicaciones creadas en este momento.</p>
+            </div>
+        {% endif %}
+    </div>
+</section>
+
+{% endblock contenidoQueCambia %}

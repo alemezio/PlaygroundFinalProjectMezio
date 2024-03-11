@@ -1,0 +1,39 @@
+{% extends 'AppProyecto/padre.html' %}
+
+{% load static %}
+
+{% block bloque_header %}
+<header class="post" style="background-image: url('{{ blog.imagen.url }}')">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="post-heading">
+                    <h1>{{ blog.titulo }}</h1>
+                    <h2 class="subheading">{{ blog.subtitulo }}</h2>
+                    <span class="meta">
+                        Posteado por {{ blog.autor }} el {{ blog.fecha_creado }}.
+                    </span>            
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+{% endblock bloque_header %}
+
+{% block contenidoQueCambia %}
+<article class="mb-4">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                {{ blog.cuerpo | safe }}
+                {% if request.user.is_authenticated and blog.autor == request.user %}
+                    <a class="btn btn-primary btn-xl" href="{% url 'Editar_post' blog.id %}">Editar</a>
+                    <a class="btn btn-primary btn-xl" href="{% url 'Borrar_post' blog.id %}">Borrar</a>
+                {% endif %}
+        
+            </div>
+        </div>
+    </div>
+</article>
+
+{% endblock contenidoQueCambia %}

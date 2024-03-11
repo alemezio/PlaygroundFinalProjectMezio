@@ -1,0 +1,35 @@
+{% extends 'AppProyecto/padre.html' %}
+
+{% load static %}
+
+{% block bloque_header %}
+    <header class="bg-dark py-4">
+        <div class="container px-3 px-lg-4 my-4">
+            <div class="text-center text-white">
+                <h1 class="display-4 fw-bolder">
+                    Iniciar sesión
+                </h1>
+                <p class="lead fw-normal text-white-50 mb-0">
+                    Ingresa con tu cuenta
+                </p>
+            </div>
+        </div>
+    </header>
+{% endblock bloque_header %}
+
+
+{% block contenidoQueCambia %}
+<section class="bg-light">
+    <div class="container">
+        <form class="p-3 p-lg-4" action={% url 'Login' %} method="POST">
+            {% csrf_token %}
+            <table class="col-md-5 fst-italic">
+                {{ formulario_login.as_table }}
+            </table>
+            <div class="py-3 py-lg-4">
+                <button class="btn btn-outline-primary fst-italic">Ingresar</button>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock contenidoQueCambia %}

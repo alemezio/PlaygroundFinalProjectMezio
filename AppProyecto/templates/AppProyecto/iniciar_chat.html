@@ -1,0 +1,34 @@
+{% extends 'AppProyecto/padre.html' %}
+
+{% load static %}
+
+{% block bloque_header %}
+    <header class="bg-dark py-4">
+        <div class="container px-3 px-lg-4 my-4">
+            <div class="text-center text-white">
+                <h1 class="display-4 fw-bolder">
+                    Comenzar un chat
+                </h1>
+                <p class="lead fw-normal text-white-50 mb-0">
+                    Estás por iniciar una conversación con otro usuario
+                </p>
+                <!-- <a class="btn btn-primary btn-xl" href="{% url 'Nuevo_chat' %}">Nuevo chat</a> -->
+            </div>
+        </div>
+    </header>
+{% endblock bloque_header %}
+
+{% block contenidoQueCambia %}
+<section class="bg-light">
+    <div class="container px-4 px-lg-5">
+        <form class="p-3 p-lg-4 lead fst-italic" action={% url 'Nuevo_chat' %} method="POST">
+            {% csrf_token %}
+            {{formulario_iniciar_chat.as_p}}
+            <div>
+                <button class="btn btn-outline-primary fst-italic"><i class="bi bi-chat"></i> Iniciar</button>
+                <a class="btn btn-outline-danger fst-italic" href={% url 'Ver_chats' %} role="button"><i class="bi bi-x-circle"></i> Cancelar</a>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock contenidoQueCambia %}
