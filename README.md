@@ -12,8 +12,8 @@ https://youtu.be/ZWe8kVJlIng
 
 ### Usuario y contraseña del administrador:
 
-user: Administrador
-password: SuperUsuario1
+- user: Administrador
+- password: SuperUsuario1
 
 ---
 
